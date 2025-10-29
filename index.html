@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="utf-8" />
@@ -25,31 +25,22 @@
       background:var(--bg);
       color:var(--text);
       font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial;
-      display:flex; justify-content:center; align-items:center;
-      min-height:100vh;
-    }
-
-    /* === Marco móvil === */
-    .phone-shell{
-      background:#000;
-      border-radius:32px;
-      box-shadow:0 0 0 4px #111, 0 10px 25px rgba(0,0,0,.6);
-      max-width:400px;
-      width:100%;
-      height:92vh;
       display:flex;
       justify-content:center;
-      align-items:stretch;
-      overflow:hidden;
+      align-items:flex-start;
+      min-height:100vh;
+      overflow-x:hidden;
     }
 
+    /* Contenedor principal */
     .phone-screen{
       background:var(--bg);
       width:100%;
-      height:100%;
+      max-width:800px;
+      min-height:100vh;
       overflow-y:auto;
       overflow-x:hidden;
-      border-radius:28px;
+      border-radius:0;
       padding:0;
       box-sizing:border-box;
     }
@@ -85,7 +76,7 @@
     .arrow{width:34px; height:34px; border-radius:10px; display:grid; place-items:center; font-weight:800; background:#0e1730; border:1px solid #203058}
     .slider-wrap input[type=range]{width:100%}
 
-    /* Ajustes sin scroll interno */
+    /* Sin scroll interno */
     .accordion-body, .slider-wrap{overflow-y:hidden !important; overflow-x:hidden !important;}
     .accordion{border:1px solid #203058; border-radius:12px; background:#0e1730}
     .accordion-head{display:flex; align-items:center; justify-content:space-between; padding:12px 14px; cursor:pointer}
@@ -106,7 +97,7 @@
       background:#0f1731;
       border:1px solid #203058;
       border-radius:12px;
-      font-size:clamp(0.65rem, 2.2vw, 0.85rem); /* 🔹 Tamaño adaptativo */
+      font-size:clamp(0.65rem, 2.2vw, 0.85rem);
       table-layout:fixed;
       word-wrap:break-word;
     }
@@ -142,10 +133,9 @@
       text-align:center;
     }
 
-    /* Orientación horizontal: ocupa todo el ancho disponible */
     @media (orientation: landscape) {
-      .phone-shell{
-        max-width:700px;
+      .phone-screen{
+        max-width:900px;
       }
       table{font-size:clamp(0.6rem,1.3vw,0.9rem);}
       h1{font-size:clamp(1rem,2.2vw,1.4rem);}
@@ -153,108 +143,106 @@
   </style>
 </head>
 <body>
-  <div class="phone-shell">
-    <div class="phone-screen">
-      <div class="wrap">
-        <header>
-          <h1>Explosiones Criptos V 1.0</h1>
-          <div class="sub">Detector en tiempo real de picos bruscos (Binance)</div>
+  <div class="phone-screen">
+    <div class="wrap">
+      <header>
+        <h1>Explosiones Criptos V 1.0</h1>
+        <div class="sub">Detector en tiempo real de picos bruscos (Binance)</div>
 
-          <div class="controls">
-            <!-- Intervalo -->
-            <div class="card">
-              <div class="title">Intervalo</div>
-              <div class="intervalo-box">
-                <button class="arrow" id="int-prev">&lt;</button>
-                <div class="intervalo" id="intervalo-label">15m</div>
-                <button class="arrow" id="int-next">&gt;</button>
-              </div>
-              <div class="footer-note">Cicla entre: 5m • 10m • 15m • 30m • 1h • 2h</div>
+        <div class="controls">
+          <!-- Intervalo -->
+          <div class="card">
+            <div class="title">Intervalo</div>
+            <div class="intervalo-box">
+              <button class="arrow" id="int-prev">&lt;</button>
+              <div class="intervalo" id="intervalo-label">15m</div>
+              <button class="arrow" id="int-next">&gt;</button>
             </div>
-
-            <!-- Sensibilidad -->
-            <div class="card">
-              <div class="title">Sensibilidad de explosión (%)</div>
-              <div class="slider-wrap">
-                <div class="row" style="justify-content:space-between">
-                  <div class="pill">Mínimo: <span class="val" id="umbral-min-val">15%</span></div>
-                  <label class="row pill" style="gap:8px;">Máximo: <span class="val" id="umbral-max-val">∞</span></label>
-                </div>
-                <input id="umbral-min" type="range" min="0" max="100" step="1" value="15" />
-                <div class="row" style="margin-top:8px; align-items:center; gap:8px">
-                  <input id="sin-limite" type="checkbox" checked />
-                  <label for="sin-limite" class="pill">Sin límite superior (∞)</label>
-                </div>
-                <div id="umbral-max-wrap" class="row" style="display:none; margin-top:8px">
-                  <input id="umbral-max" type="range" min="1" max="100" step="1" value="100" />
-                </div>
-              </div>
-              <div class="footer-note">Se activa una alarma cuando la vela supera el % mínimo.</div>
-            </div>
-
-            <!-- Criptomonedas -->
-            <div class="card">
-              <div class="title">Criptomonedas a rastrear</div>
-              <div class="accordion" id="acc-cryptos">
-                <div class="accordion-head">
-                  <div>📈 Seleccionar criptos</div>
-                  <button class="btn-small btn-ghost" id="acc-toggle">Abrir</button>
-                </div>
-                <div class="accordion-body" id="acc-body">
-                  <div class="grid-cryptos" id="crypto-list"></div>
-                  <div class="row" style="justify-content:flex-end; margin-top:8px">
-                    <button class="btn-ok btn-small" id="acc-close">✔️ Listo</button>
-                  </div>
-                </div>
-              </div>
-              <div class="footer-note">El panel se oculta para ocupar lo mínimo en pantalla.</div>
-              <div class="row" style="justify-content:center">
-                <button class="btn" id="btn-start">Iniciar</button>
-                <button class="btn-ghost" id="btn-stop">Detener</button>
-                <button class="btn-ghost" id="btn-clear">Vaciar</button>
-                <button class="btn-ghost" id="btn-sonido">🔊 ON</button>
-              </div>
-            </div>
+            <div class="footer-note">Cicla entre: 5m • 10m • 15m • 30m • 1h • 2h</div>
           </div>
 
-          <!-- Estado -->
-          <div class="row" style="margin-top:1%; justify-content:center">
-            <div class="status">
-              <div>Semáforo:</div>
-              <div class="semaforo">
-                <div class="dot" id="led-verde" title="Explosión alcista"></div>
-                <div class="dot" id="led-rojo" title="Explosión bajista"></div>
+          <!-- Sensibilidad -->
+          <div class="card">
+            <div class="title">Sensibilidad de explosión (%)</div>
+            <div class="slider-wrap">
+              <div class="row" style="justify-content:space-between">
+                <div class="pill">Mínimo: <span class="val" id="umbral-min-val">15%</span></div>
+                <label class="row pill" style="gap:8px;">Máximo: <span class="val" id="umbral-max-val">∞</span></label>
               </div>
-              <div id="countdown">--</div>🕒
-              <div id="status-text" style="color:#9db2d8; font-size:0.85rem; min-height:1.2em;">Preparado para analizar...</div>
+              <input id="umbral-min" type="range" min="0" max="100" step="1" value="15" />
+              <div class="row" style="margin-top:8px; align-items:center; gap:8px">
+                <input id="sin-limite" type="checkbox" checked />
+                <label for="sin-limite" class="pill">Sin límite superior (∞)</label>
+              </div>
+              <div id="umbral-max-wrap" class="row" style="display:none; margin-top:8px">
+                <input id="umbral-max" type="range" min="1" max="100" step="1" value="100" />
+              </div>
+            </div>
+            <div class="footer-note">Se activa una alarma cuando la vela supera el % mínimo.</div>
+          </div>
+
+          <!-- Criptomonedas -->
+          <div class="card">
+            <div class="title">Criptomonedas a rastrear</div>
+            <div class="accordion" id="acc-cryptos">
+              <div class="accordion-head">
+                <div>📈 Seleccionar criptos</div>
+                <button class="btn-small btn-ghost" id="acc-toggle">Abrir</button>
+              </div>
+              <div class="accordion-body" id="acc-body">
+                <div class="grid-cryptos" id="crypto-list"></div>
+                <div class="row" style="justify-content:flex-end; margin-top:8px">
+                  <button class="btn-ok btn-small" id="acc-close">✔️ Listo</button>
+                </div>
+              </div>
+            </div>
+            <div class="footer-note">El panel se oculta para ocupar lo mínimo en pantalla.</div>
+            <div class="row" style="justify-content:center">
+              <button class="btn" id="btn-start">Iniciar</button>
+              <button class="btn-ghost" id="btn-stop">Detener</button>
+              <button class="btn-ghost" id="btn-clear">Vaciar</button>
+              <button class="btn-ghost" id="btn-sonido">🔊 ON</button>
             </div>
           </div>
-        </header>
-
-        <!-- Registros -->
-        <div class="card" style="margin-top:1%">
-          <div class="title">Registros de explosiones</div>
-          <table>
-            <thead>
-              <tr>
-                <th>Cripto</th>
-                <th>Intervalo</th>
-                <th>Fecha</th>
-                <th>Hora</th>
-                <th>% Cambio</th>
-                <th>Tipo</th>
-                <th>Inicio</th>
-                <th>Máx/Mín</th>
-                <th>Fin</th>
-                <th>Volumen</th>
-                <th>Vol. Medio</th>
-                <th>Comentario</th>
-              </tr>
-            </thead>
-            <tbody id="tabla-registros"></tbody>
-          </table>
-          <div class="footer-note">Los eventos se guardan en localStorage para persistencia local.</div>
         </div>
+
+        <!-- Estado -->
+        <div class="row" style="margin-top:1%; justify-content:center">
+          <div class="status">
+            <div>Semáforo:</div>
+            <div class="semaforo">
+              <div class="dot" id="led-verde" title="Explosión alcista"></div>
+              <div class="dot" id="led-rojo" title="Explosión bajista"></div>
+            </div>
+            <div id="countdown">--</div>🕒
+            <div id="status-text" style="color:#9db2d8; font-size:0.85rem; min-height:1.2em;">Preparado para analizar...</div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Registros -->
+      <div class="card" style="margin-top:1%">
+        <div class="title">Registros de explosiones</div>
+        <table>
+          <thead>
+            <tr>
+              <th>Cripto</th>
+              <th>Intervalo</th>
+              <th>Fecha</th>
+              <th>Hora</th>
+              <th>% Cambio</th>
+              <th>Tipo</th>
+              <th>Inicio</th>
+              <th>Máx/Mín</th>
+              <th>Fin</th>
+              <th>Volumen</th>
+              <th>Vol. Medio</th>
+              <th>Comentario</th>
+            </tr>
+          </thead>
+          <tbody id="tabla-registros"></tbody>
+        </table>
+        <div class="footer-note">Los eventos se guardan en localStorage para persistencia local.</div>
       </div>
     </div>
   </div>
