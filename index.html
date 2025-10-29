@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Explosiones Criptos V 1.0</title>
+
   <style>
     :root{
       --bg:#0b0d12;
@@ -63,17 +63,27 @@
     .sub{color:var(--muted); margin-top:6px; font-size:clamp(0.8rem, 3.5vw, .95rem); text-align:center}
 
     .controls{display:grid; gap:2%; margin-top:6%; grid-template-columns:1fr}
-    .card{background:var(--panel); border:1px solid #1c2742; border-radius:var(--radius); padding:12px; box-shadow:var(--shadow)}
+    .card{background:var(--panel); border:1px solid #1c2742; border-radius:var(--radius); padding:12px; box-shadow:var(--
+
+shadow)}
     .title{font-weight:600; margin-bottom:8px; font-size:clamp(0.9rem,3vw,1rem); text-align:center}
     .row{display:flex; align-items:center; gap:10px; flex-wrap:wrap; justify-content:center}
-    .pill{background:var(--panel-2); border:1px solid #1d2845; border-radius:12px; padding:6px 10px; color:#9db2d8; font-size:.9rem; display:inline-flex; align-items:center; gap:10px}
-    button,.btn{cursor:pointer; border:none; border-radius:12px; padding:10px 14px; background:#18233f; color:#cfe0ff; box-shadow:var(--shadow)}
+    .pill{background:var(--panel-2); border:1px solid #1d2845; border-radius:12px; padding:6px 10px; color:#9db2d8; font-
+
+size:.9rem; display:inline-flex; align-items:center; gap:10px}
+    button,.btn{cursor:pointer; border:none; border-radius:12px; padding:10px 14px; background:#18233f; color:#cfe0ff; box-
+
+shadow:var(--shadow)}
     .btn-ghost{background:transparent; border:1px solid #263458}
     .btn-ok{background:var(--ok); color:#08210f}
     .btn-small{padding:6px 10px; border-radius:10px; font-size:.9rem}
     .intervalo-box{display:flex; align-items:center; justify-content:center; gap:10px}
-    .intervalo{min-width:70px; text-align:center; background:#0e1730; border:1px solid #203058; border-radius:10px; padding:6px 10px; font-weight:700}
-    .arrow{width:34px; height:34px; border-radius:10px; display:grid; place-items:center; font-weight:800; background:#0e1730; border:1px solid #203058}
+    .intervalo{min-width:70px; text-align:center; background:#0e1730; border:1px solid #203058; border-radius:10px; 
+
+padding:6px 10px; font-weight:700}
+    .arrow{width:34px; height:34px; border-radius:10px; display:grid; place-items:center; font-weight:800; 
+
+background:#0e1730; border:1px solid #203058}
     .slider-wrap input[type=range]{width:100%}
 
     /* Sin scroll interno */
@@ -146,7 +156,24 @@
   <div class="phone-screen">
     <div class="wrap">
       <header>
-        <h1>Explosiones Criptos V 1.0</h1>
+        <h1 style="
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  font-weight:700;
+  margin:0;
+  padding:10px 0;
+">
+  <img src="Logo.png" alt="Logo" style="
+    width:36px;
+    height:36px;
+    border-radius:8px;
+    box-shadow:0 0 4px rgba(0,0,0,0.6);
+  ">
+  Explosiones Criptos V 1.0
+</h1>
+
         <div class="sub">Detector en tiempo real de picos bruscos (Binance)</div>
 
         <div class="controls">
