@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
+  <title>Explosiones Criptos V 1.0</title>
   <style>
     :root{
       --bg:#0b0d12;
@@ -25,27 +25,21 @@
       background:var(--bg);
       color:var(--text);
       font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial;
-      display:flex;
-      justify-content:center;
-      align-items:flex-start;
+      display:flex; justify-content:center; align-items:center;
       min-height:100vh;
-      overflow-x:hidden;
     }
 
-    /* Contenedor principal */
     .phone-screen{
       background:var(--bg);
       width:100%;
-      max-width:800px;
-      min-height:100vh;
+      height:100%;
       overflow-y:auto;
       overflow-x:hidden;
-      border-radius:0;
+      border-radius:28px;
       padding:0;
       box-sizing:border-box;
     }
 
-    /* Contenido principal */
     .wrap, header, .card, .controls{
       max-width:100%;
       overflow-x:hidden;
@@ -59,7 +53,26 @@
       padding:1% 1% 10%; box-shadow:var(--shadow);
     }
 
-    h1{margin:0; font-size:clamp(1rem, 4vw, 1.3rem); letter-spacing:.2px; text-align:center}
+    h1{
+      margin:0;
+      font-size:clamp(1rem, 4vw, 1.3rem);
+      letter-spacing:.2px;
+      text-align:center;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      font-weight:700;
+      padding:10px 0;
+    }
+
+    h1 img{
+      width:36px;
+      height:36px;
+      border-radius:8px;
+      box-shadow:0 0 4px rgba(0,0,0,0.6);
+    }
+
     .sub{color:var(--muted); margin-top:6px; font-size:clamp(0.8rem, 3.5vw, .95rem); text-align:center}
 
     .controls{display:grid; gap:2%; margin-top:6%; grid-template-columns:1fr}
@@ -86,7 +99,6 @@ padding:6px 10px; font-weight:700}
 background:#0e1730; border:1px solid #203058}
     .slider-wrap input[type=range]{width:100%}
 
-    /* Sin scroll interno */
     .accordion-body, .slider-wrap{overflow-y:hidden !important; overflow-x:hidden !important;}
     .accordion{border:1px solid #203058; border-radius:12px; background:#0e1730}
     .accordion-head{display:flex; align-items:center; justify-content:space-between; padding:12px 14px; cursor:pointer}
@@ -99,7 +111,6 @@ background:#0e1730; border:1px solid #203058}
     .dot.verde{background:#19e27a; border-color:#2f8d5d;}
     .dot.roja{background:#ff5a76; border-color:#a12d42;}
 
-    /* === TABLA RESPONSIVE === */
     table{
       width:100%;
       border-collapse:collapse;
@@ -144,9 +155,6 @@ background:#0e1730; border:1px solid #203058}
     }
 
     @media (orientation: landscape) {
-      .phone-screen{
-        max-width:900px;
-      }
       table{font-size:clamp(0.6rem,1.3vw,0.9rem);}
       h1{font-size:clamp(1rem,2.2vw,1.4rem);}
     }
@@ -156,28 +164,13 @@ background:#0e1730; border:1px solid #203058}
   <div class="phone-screen">
     <div class="wrap">
       <header>
-        <h1 style="
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:10px;
-  font-weight:700;
-  margin:0;
-  padding:10px 0;
-">
-  <img src="Logo.png" alt="Logo" style="
-    width:36px;
-    height:36px;
-    border-radius:8px;
-    box-shadow:0 0 4px rgba(0,0,0,0.6);
-  ">
-  Explosiones Criptos V 1.0
-</h1>
-
+        <h1>
+          <img src="Logo.png" alt="Logo">
+          Explosiones Criptos V 1.0
+        </h1>
         <div class="sub">Detector en tiempo real de picos bruscos (Binance)</div>
 
         <div class="controls">
-          <!-- Intervalo -->
           <div class="card">
             <div class="title">Intervalo</div>
             <div class="intervalo-box">
@@ -188,7 +181,6 @@ background:#0e1730; border:1px solid #203058}
             <div class="footer-note">Cicla entre: 5m • 10m • 15m • 30m • 1h • 2h</div>
           </div>
 
-          <!-- Sensibilidad -->
           <div class="card">
             <div class="title">Sensibilidad de explosión (%)</div>
             <div class="slider-wrap">
@@ -208,7 +200,6 @@ background:#0e1730; border:1px solid #203058}
             <div class="footer-note">Se activa una alarma cuando la vela supera el % mínimo.</div>
           </div>
 
-          <!-- Criptomonedas -->
           <div class="card">
             <div class="title">Criptomonedas a rastrear</div>
             <div class="accordion" id="acc-cryptos">
@@ -233,7 +224,6 @@ background:#0e1730; border:1px solid #203058}
           </div>
         </div>
 
-        <!-- Estado -->
         <div class="row" style="margin-top:1%; justify-content:center">
           <div class="status">
             <div>Semáforo:</div>
@@ -247,7 +237,6 @@ background:#0e1730; border:1px solid #203058}
         </div>
       </header>
 
-      <!-- Registros -->
       <div class="card" style="margin-top:1%">
         <div class="title">Registros de explosiones</div>
         <table>
