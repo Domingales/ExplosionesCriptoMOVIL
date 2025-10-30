@@ -146,7 +146,23 @@
   <div class="phone-screen">
     <div class="wrap">
       <header>
-        <h1>Explosiones Criptos V 1.0</h1>
+        <h1 style="
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          gap:10px;
+          font-weight:700;
+          margin:0;
+          padding:10px 0;
+        ">
+          <img src="Logo.png" alt="Logo" style="
+            width:36px;
+            height:36px;
+            border-radius:8px;
+            box-shadow:0 0 4px rgba(0,0,0,0.6);
+          ">
+          Explosiones Criptos V 1.0
+        </h1>
         <div class="sub">Detector en tiempo real de picos bruscos (Binance)</div>
 
         <div class="controls">
@@ -219,6 +235,7 @@
           </div>
         </div>
       </header>
+
 <!-- Registros -->
 <div class="card" style="margin-top:1%">
   <div class="title">Registros de explosiones</div>
@@ -245,7 +262,6 @@
     Los eventos se guardan en localStorage para persistencia local.
   </div>
 </div>
-
 
   <script src="recogerDatos.js" defer></script>
   <script src="procesarExplosiones.js" defer></script>
